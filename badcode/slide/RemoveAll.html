@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/go/src/go/src/os/path.go.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="go">
+<meta name="settings" content="use_css,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="apprentice">
+<style type="text/css">
+<!--
+pre { font-family: monospace; color: #bcbcbc; background-color: #121212; }
+body { font-family: monospace; color: #bcbcbc; background-color: #121212; }
+* { font-size: 1em; }
+.Constant { color: #ff8700; }
+.Statement { color: #87afd7; }
+.Comment { color: #585858; }
+.Type { color: #8787af; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Statement">func</span> RemoveAll(path <span class="Type">string</span>) <span class="Type">error</span> {
+    <span class="Comment bold">// Simple case: if Remove works, we're done.</span>
+    err <span class="Statement">:=</span> Remove(path)
+    <span class="Statement">if</span> err <span class="Statement">==</span> <span class="Constant">nil</span> || IsNotExist(err) {
+        <span class="Statement">return</span> <span class="Constant">nil</span>
+    }
+    <span class="Comment bold">// Otherwise, is this a directory we need to recurse into?</span>
+    dir, serr <span class="Statement">:=</span> Lstat(path)
+    <span class="Statement">if</span> serr <span class="Statement">!=</span> <span class="Constant">nil</span> {
+        <span class="Statement">if</span> serr, ok <span class="Statement">:=</span> serr.(*PathError); ok &amp;&amp; (IsNotExist(serr.Err) || serr.Err <span class="Statement">==</span> syscall.ENOTDIR) {
+            <span class="Statement">return</span> <span class="Constant">nil</span>
+        }
+        <span class="Statement">return</span> serr
+    }
+    <span class="Statement">if</span> !dir.IsDir() {
+        <span class="Comment bold">// Not a directory; return the error from Remove.</span>
+        <span class="Statement">return</span> err
+    }
+    ...
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

@@ -1,0 +1,150 @@
+The Gopher from The Future
+GopherCon, Bangalore, India
+20 Feb 2015
+Tags: golang, readability, documentation, clean code
+
+Gabriel Aszalos
+sourcegraph.com
+gabriel@sourcegraph.com
+@gabrielaszalos
+
+* Where it all began...
+
+* Back in the '90s
+
+- Computers that ran with casettes and floppy disks
+- Programming languages like BASIC (or Pascal):
+
+	10 PRINT "Enter a number"
+	20 INPUT 'n
+	30 PRINT "Square root of " % "'n is " % SQRT('n)
+	40 END
+
+- Linear programming and the source of accomplishment
+
+_"When_coding_in_the_1980s_with_cassettes_for_storage_I_used_to_write_programs_and_not_bother_saving_them._Knowing_they_worked_was_enough."_ - J. Graham-Cumming, [[https://twitter.com/jgrahamc/status/561852143397662722][Twitter]]
+
+* The software world today
+
+- Distributed systems and complex applications
+- Multiple programming languages
+- Collaborative environment and "social coding"
+- Sense of accomplishment comes from acknowledgement and sharing (contributions).
+
+* The Gopher from The Future
+
+The person who will work on our code in the future. The lifetime and success of our work is directly linked to his experience with our code.
+
+- Superior programmer qualities: assuming the correct perspective.
+- Inferior programmer qualities: forgetting the value of contribution.
+
+* The two phases of development
+
+*1.* *The* *prototype*
+Many times called the _"throw-away"_ project, consists of:
+
+- Translating your idea into a big blob of code
+- Making it resolve your problem
+- Learning more and acknowledging corner-cases
+
+*2.* *The* *implementation*
+Preparing the real program for the rest of the world.
+
+- Assume the correct perspective.
+
+* How to write good code
+
+The qualities of clean, maintainable and scalable code:
+
+- Readability
+- Documentation
+- Testability
+
+* Readability
+
+Readability is the quality of code that allows it to be as easily comprehensible as possible when being read by a third party.
+
+_When_I_think_about_a_programming_language_optimised_for_"readability"_I_think_"comprehension",_not_"brevity"_ - Dave Cheney, [[https://twitter.com/davecheney/status/531258441939963905][Twitter]]
+
+- Code must be readable in the language of Go, not in the language of English.
+
+# Concise and exact use of words in writing or speech.
+
+* Naming things
+
+A good rule of thumb is that when naming things, the further away an identifier is used, the more descriptive its name should be.
+
+- Keep local names short, generally one letter.
+- Don't repeat yourself. A package's name should be considered part of its methods, just as a structure's name should be considered part of the methods attached to it.
+
+For example, in package `net/http`:
+
+.html header-type.html
+
+Should be considered as `http.Header`.
+
+* Naming things
+
+.html teeReader-hard.html
+
+vs.
+
+.html teeReader-good.html
+
+* Renaming things
+
+.html type-empty.html
+
+vs.
+
+.html type-empty-good.html
+
+* Focused functions and packages.
+
+- Functions should generally do one thing, and one thing well.
+- _If_it_looks_complicated,_it's_probably_wrong._ - William Kennedy, Gotham Go 2014
+
+# Mental space and internalizing
+
+# Review your own code.
+
+* Documenting your package
+
+Use full sentences, starting with the name of the identifier, and finishing with a period:
+
+- Exported (and unexported) identifiers
+
+.html WriteString.html
+
+- Package overview
+
+- Examples
+
+* Comments for your contributors
+
+For long or complex functions with a complicated process, do not shy away from sprinkling some more comments inline.
+
+.html RemoveAll.html
+
+* The correct perspective
+
+The only way to view your documentation from a correct perspective is by looking at it from the user's point of view.
+
+- Run *godoc*:
+
+	$ godoc -http=:8080
+
+If you haven't installed godoc, you can do so via: 
+
+	$ go get golang.org/x/tools/cmd/godoc
+
+* Can you tell which is the cleaner code?
+
+.image good-bad.png
+
+* Take away
+
+- Assume the correct perspective.
+- Find the right solutions.
+- More about readability at `http://golang.org/s/comments`
+
